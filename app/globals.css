@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background-color: #04091a;
+  color: white;
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+/* ── Mist blob animations ──────────────────────────── */
+@keyframes mist-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.42;
+  }
+  33% {
+    transform: translate(14px, -18px) scale(1.05);
+    opacity: 0.54;
+  }
+  66% {
+    transform: translate(-10px, 12px) scale(0.96);
+    opacity: 0.32;
+  }
+}
+
+@keyframes mist-float-alt {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.02);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate(-16px, 14px) scale(0.97);
+    opacity: 0.4;
+  }
+}
+
+/* ── Waterfall stream animation ────────────────────── */
+@keyframes stream-fall {
+  0% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+  12%,
+  76% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* ── Landing entrance animations ──────────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Scroll-reveal (driven by IntersectionObserver) ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Project panel fade-swap ──────────────────────── */
+.project-panel {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.project-panel.fading {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+/* ── Named utility classes for animations ─────────── */
+.anim-mist {
+  animation: mist-float 12s ease-in-out infinite;
+}
+.anim-mist-alt {
+  animation: mist-float-alt 17s ease-in-out infinite;
+}
+.anim-mist-slow {
+  animation: mist-float 22s ease-in-out infinite reverse;
+}
+.anim-stream {
+  animation: stream-fall 7s linear infinite;
+}
+.anim-fade-up {
+  animation: fade-up 0.85s ease forwards;
+}
+.anim-fade-up-1 {
+  animation: fade-up 0.85s ease 0.18s forwards;
+  opacity: 0;
+}
+.anim-fade-up-2 {
+  animation: fade-up 0.85s ease 0.34s forwards;
+  opacity: 0;
+}
+.anim-fade-up-3 {
+  animation: fade-up 0.85s ease 0.52s forwards;
+  opacity: 0;
+}
+
+/* ── Glassmorphism card with hover ─────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  transition: background 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(56, 189, 248, 0.22);
+  transform: scale(1.01);
 }
