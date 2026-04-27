@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import HomeSection from "@/components/HomeSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
+import EmailButton from "@/components/EmailButton";
 
 export default function Home() {
   return (
@@ -41,11 +42,6 @@ export default function Home() {
                   external: true,
                 },
                 {
-                  label: "Email",
-                  href: "mailto:ling06410@gmail.com",
-                  external: false,
-                },
-                {
                   label: "Resume",
                   href: "/Andrew-Wang-Resume.pdf",
                   external: true,
@@ -61,6 +57,7 @@ export default function Home() {
                   {l.label}
                 </a>
               ))}
+              <EmailButton className="text-xs text-slate-600 hover:text-sky-400 transition-colors" />
             </div>
           </div>
         </footer>

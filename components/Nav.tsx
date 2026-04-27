@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import EmailButton from "./EmailButton";
 
 const NAV_SECTIONS = [
   { id: "home", label: "Home" },
@@ -23,11 +24,6 @@ const SOCIAL_LINKS = [
     label: "Resume",
     href: "/Andrew-Wang-Resume.pdf",
     external: true,
-  },
-  {
-    label: "Email",
-    href: "mailto:ling06410@gmail.com",
-    external: false,
   },
 ];
 
@@ -112,6 +108,9 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <EmailButton className="text-xs text-slate-500 hover:text-sky-300 transition-colors font-medium tracking-wide" />
+          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -178,6 +177,12 @@ export default function Nav() {
                   </a>
                 </li>
               ))}
+              <li>
+                <EmailButton
+                  className="text-xs text-slate-500 hover:text-sky-300 transition-colors font-medium"
+                  onCopied={() => setMenuOpen(false)}
+                />
+              </li>
             </ul>
           </div>
         </div>
